@@ -15,7 +15,6 @@ import javax.swing.JOptionPane;
 public class DatabaseConnect {
     private static Connection connection = null;
     
-    // Constructor එකක් හරහා Database සම්බන්ධතාවය ආරම්භ කරන්න.
     public DatabaseConnect() {
         DatabaseConnect();
     }
@@ -36,7 +35,7 @@ public class DatabaseConnect {
     
     public static Connection getConnection() {
         if (connection == null) {
-            new DatabaseConnect(); // Constructor එක හරහා සම්බන්ධතාවය ආරම්භ කරන්න.
+            new DatabaseConnect();
         }
         return connection;
     }

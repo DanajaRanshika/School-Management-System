@@ -4,6 +4,11 @@
  */
 package newPackage1;
 
+import com.mycompany.schoolmanagementsystem.DatabaseConnect;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Danaja Ranshika
@@ -26,21 +31,238 @@ public class GradeForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblGradeID = new javax.swing.JLabel();
+        txtGradeID = new javax.swing.JTextField();
+        lblStudentID = new javax.swing.JLabel();
+        txtStudentID = new javax.swing.JTextField();
+        lblClassID = new javax.swing.JLabel();
+        txtClassID = new javax.swing.JTextField();
+        lblSubject = new javax.swing.JLabel();
+        txtSubject = new javax.swing.JTextField();
+        lblMarks = new javax.swing.JLabel();
+        txtMarks = new javax.swing.JTextField();
+        btnSave = new javax.swing.JButton();
+        btnEdit = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
+        btnClear = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        lblGradeID.setText("Grade ID");
+
+        lblStudentID.setText("Student ID");
+
+        lblClassID.setText("Class ID");
+
+        lblSubject.setText("Subject");
+
+        lblMarks.setText("Marks");
+
+        btnSave.setText("Save");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
+
+        btnEdit.setText("Edit");
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditActionPerformed(evt);
+            }
+        });
+
+        btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
+
+        btnClear.setText("Clear");
+        btnClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(533, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(lblGradeID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblStudentID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblSubject, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblMarks, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblClassID, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtGradeID)
+                                    .addComponent(txtStudentID)
+                                    .addComponent(txtMarks, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtClassID, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtSubject, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnDelete)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnClear))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnSave)
+                                .addGap(27, 27, 27)
+                                .addComponent(btnEdit)))))
+                .addGap(34, 34, 34))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(80, 80, 80)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblGradeID)
+                    .addComponent(txtGradeID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblStudentID)
+                    .addComponent(txtStudentID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblClassID)
+                    .addComponent(txtClassID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblSubject)
+                    .addComponent(txtSubject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblMarks)
+                    .addComponent(txtMarks, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSave)
+                    .addComponent(btnEdit))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnDelete)
+                    .addComponent(btnClear))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // TODO add your handling code here:
+        String query = "INSERT INTO grades VALUES (?, ?, ?, ?, ?)";
+    try {
+        Connection conn = DatabaseConnect.getConnection(); // Get the shared connection
+        PreparedStatement ps = conn.prepareStatement(query);
+
+        // Retrieve data from input fields
+        String gradeid = txtGradeID.getText();
+        String studentid = txtStudentID.getText();
+        String classid = txtClassID.getText();
+        String subject = txtSubject.getText();
+        String marks = txtMarks.getText();
+
+        // Set values in the PreparedStatement
+        ps.setString(1, gradeid);
+        ps.setString(2, studentid);
+        ps.setString(3, classid);
+        ps.setString(4, subject);
+        ps.setString(5, marks);
+
+        // Execute the query
+        int status = ps.executeUpdate();
+
+        // Check the result
+        if (status == 1) {
+            JOptionPane.showMessageDialog(rootPane, "Data Added Successfully!");
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Something went wrong!");
+        }
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(rootPane, e.toString());
+    }
+    
+    }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+        // TODO add your handling code here:
+        String query = "update grades set studentId=?, classId=?, subject=?, marks=? where gradeId=?";
+        try {
+            Connection conn = DatabaseConnect.getConnection();
+         PreparedStatement ps = conn.prepareStatement(query);
+            String gradeid = txtGradeID.getText();
+            String studentid = txtStudentID.getText();
+            String classid = txtClassID.getText();
+            String subject = txtSubject.getText();
+            String marks = txtMarks.getText();
+            
+            ps.setString(5, gradeid);
+            ps.setString(1, studentid);
+            ps.setString(2, classid);
+            ps.setString(3, subject);
+            ps.setString(4, marks);
+            
+            int status = ps.executeUpdate();
+            
+            if(status == 1){
+            JOptionPane.showMessageDialog(rootPane, "Update Successfully!");
+            
+            }
+            else{
+            JOptionPane.showMessageDialog(rootPane, "Something went Wrong!");
+            }
+           
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, e.toString());
+            
+        }
+    }//GEN-LAST:event_btnEditActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        String query = "delete from grades where gradeId=?";
+         try {
+             Connection conn = DatabaseConnect.getConnection();
+         PreparedStatement ps = conn.prepareStatement(query);
+          String gradeid = txtGradeID.getText();
+         
+          ps.setString(1, gradeid);
+          
+          int status = ps.executeUpdate();
+          
+          if(status == 1){
+          JOptionPane.showMessageDialog(rootPane, "Delete Successfully!");
+          
+          }
+          else{
+          JOptionPane.showMessageDialog(rootPane, "Something went Wrong!");
+          }
+         
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, e.toString());
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+        // TODO add your handling code here:
+        txtGradeID.setText("");
+        txtStudentID.setText("");
+        txtClassID.setText("");
+        txtSubject.setText("");
+        txtMarks.setText("");
+    }//GEN-LAST:event_btnClearActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +300,19 @@ public class GradeForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnClear;
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnEdit;
+    private javax.swing.JButton btnSave;
+    private javax.swing.JLabel lblClassID;
+    private javax.swing.JLabel lblGradeID;
+    private javax.swing.JLabel lblMarks;
+    private javax.swing.JLabel lblStudentID;
+    private javax.swing.JLabel lblSubject;
+    private javax.swing.JTextField txtClassID;
+    private javax.swing.JTextField txtGradeID;
+    private javax.swing.JTextField txtMarks;
+    private javax.swing.JTextField txtStudentID;
+    private javax.swing.JTextField txtSubject;
     // End of variables declaration//GEN-END:variables
 }
